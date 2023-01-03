@@ -1,5 +1,16 @@
 #!/bin/bash
 
+echo -e "This is the content of input.csv file\n"
+cat input.csv
+if [ -f output.csv ]
+then
+	rm output.csv
+	ls -a
+else
+	echo -e "No output.csv file yet in the folder\n"
+	ls -a
+fi
+echo "Parsing a file..."
 exec < input.csv
 read header
 header="$header,IP reachable,Hostname Registered,SSH Enabled"
@@ -41,3 +52,6 @@ do
 		echo "$result,NO" >> output.csv
 	fi
 done
+echo "New file created with new contents"
+ls -a
+cat output.csv
