@@ -40,16 +40,17 @@ then
 
 		success2=$(dig $value2 +short)
 		if [ -z $success2 ]
-			then
-					result="$result,NO"
-			else
-					result="$result,YES"
-			fi
+		then
+			result="$result,NO"
+		else
+			result="$result,YES"
+		fi
 
 		#check if ssh port 22 is open and accepts connections
 
 		sshstatus=$(nmap $value1 -Pn -p 22 | egrep -io 'open|closed|filtered')
-		if [ $sshstatus == "open" ];then
+		if [ $sshstatus == "open" ]
+		then
 			echo "$result,YES" >> $output_filename
 		else 
 			echo "$result,NO" >> $output_filename
